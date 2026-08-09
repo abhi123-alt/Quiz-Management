@@ -1,5 +1,4 @@
 package com.quizapp.model;
-
 public class User {
     private int user_id;
     private String name;
@@ -7,7 +6,6 @@ public class User {
     private String password;
     private String role;
     public User(){
-
     }
     public User(String name, String email, String password,String role){
         this.name=name;
@@ -15,14 +13,13 @@ public class User {
         this.password=password;
         this.role=role;
     }
-    // getters and setters
+    public User(String name, String email, String password){
+        this.name=name;
+        this.email=email;
+        this.password=password;
+    }
 
-    public int getUser_id(){
-        return user_id;
-    }
-    public void setUser_id(int user_id){
-        this.user_id=user_id;
-    }
+    // getters and setters
     public String getName(){
         return name;
     }
@@ -47,6 +44,10 @@ public class User {
     public void setRole(String role){
         this.role=role;
     }
-
-
+    public int getUserId(){
+        return user_id;
+    }
+    public void setUserId(int user_id) {
+        this.user_id=user_id;
+    }
 }
