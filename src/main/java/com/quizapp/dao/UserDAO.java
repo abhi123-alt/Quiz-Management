@@ -7,10 +7,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserDAO {
-    private static final String INSERT_USER="insert into users (name,email,password) values(?,?,?)";
+    private static final String INSERT_USER ="INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)";
     private static final String Get_User_By_Id="select * from users where user_id=?";
     private static final String Update_User="update users set name=?,email=?,password=?,role=? where user_id=?";
-    private static final String GET_USER_BY_EMAIL ="SELECT * FROM users WHERE email = ?";
+    private static final String GET_USER_BY_EMAIL ="select user_id,name,email,password,role from users where email=?";
     // Register User
     public boolean registerUser(User user){
         try {
@@ -19,6 +19,7 @@ public class UserDAO {
             statement.setString(1, user.getName());
             statement.setString(2, user.getEmail());
             statement.setString(3, user.getPassword());
+            statement.setString(4, user.getRole() != null ? user.getRole() : "USER");
             int rowsInserted= statement.executeUpdate();
             return rowsInserted>0;
         } catch (SQLException e) {
@@ -33,7 +34,9 @@ public class UserDAO {
         {
             statement.setString(1, email);
             ResultSet rs = statement.executeQuery();
+            System.out.println("Checking email: " + email);
             if (rs.next()) {
+                System.out.println("Found user: " + rs.getString("email"));
                 user = new User();
                 user.setUserId(rs.getInt("user_id"));
                 user.setName(rs.getString("name"));

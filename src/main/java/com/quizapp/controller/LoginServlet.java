@@ -11,7 +11,9 @@ import java.io.IOException;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
+
     private final UserService userService = new UserService();
+
     @Override
     protected void doGet(HttpServletRequest request,HttpServletResponse response)throws ServletException, IOException {
         request.getRequestDispatcher("/WEB-INF/views/auth/login.jsp").forward(request, response);

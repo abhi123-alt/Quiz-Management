@@ -1,0 +1,207 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f7fb;
+    color: #1f2937;
+}
+
+.page-container {
+    display: flex;
+    min-height: 100vh;
+}
+/* ================= SIDEBAR ================= */
+.sidebar {
+    width: 240px;
+    background: #111827;
+    color: white;
+    padding: 25px 15px;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    padding: 10px 15px 35px;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sidebar nav a {
+    text-decoration: none;
+    color: #cbd5e1;
+    padding: 13px 15px;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active {
+    background: #2563eb;
+    color: white;
+}
+
+/* ================= MAIN ================= */
+.main-content {
+    flex: 1;
+    padding: 40px;
+}
+
+.top-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.top-section h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.top-section p {
+    color: #6b7280;
+}
+/* ================= BUTTON ================= */
+.take-btn,
+.start-btn {
+    text-decoration: none;
+    background: #2563eb;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+.take-btn:hover,
+.start-btn:hover {
+    background: #1d4ed8;
+}
+/* ================= CARD ================= */
+.history-card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+/* ================= TABLE ================= */
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: #f8fafc;
+}
+
+th {
+    text-align: left;
+    padding: 15px;
+    font-size: 14px;
+    color: #64748b;
+    white-space: nowrap;
+}
+
+td {
+    padding: 16px 15px;
+    border-top: 1px solid #e5e7eb;
+    white-space: nowrap;
+}
+
+tbody tr:hover {
+    background: #f8fafc;
+}
+
+.quiz-title {
+    font-weight: 600;
+}
+
+
+/* ================= LABELS ================= */
+
+.category,
+.difficulty {
+    background: #eef2ff;
+    color: #4338ca;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.difficulty {
+    background: #f1f5f9;
+    color: #475569;
+}
+
+.score {
+    font-weight: bold;
+}
+
+/* ================= RESULT ================= */
+.result {
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.excellent {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.good {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.average {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.poor {
+    background: #fee2e2;
+    color: #991b1b;
+}
+/* ================= EMPTY ================= */
+.empty-history {
+    text-align: center;
+    padding: 70px 20px;
+}
+
+.empty-history h2 {
+    margin-bottom: 10px;
+}
+
+.empty-history p {
+    color: #6b7280;
+    margin-bottom: 25px;
+}
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 180px;
+    }
+    .main-content {
+        padding: 20px;
+    }
+    .top-section {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+    .top-section h1 {
+        font-size: 26px;
+    }
+}

@@ -13,12 +13,12 @@
          <div class="auth-logo">🎓 <span>StudyTrack</span></div>
          <h2>Welcome Back 👋</h2>
          <p class="auth-subtitle">Continue your study journey</p>
-         <%
-             String error = (String) request.getAttribute("error");
-             if(error != null){
-         %><div class="error-message"><%= error %></div>
-         <% } %>
-         <form action="${pageContext.request.contextPath}/login"method="post">
+                  <% String error = (String) request.getAttribute("error");
+                      if(error != null){
+                  %>
+                  <div class="error-message"><%= error %></div>
+                  <% } %>
+         <form action="${pageContext.request.contextPath}/login" method="post">
              <div class="input-group">
                  <label>Email Address</label>
                  <input type="email"name="email"placeholder="Enter your email"required>

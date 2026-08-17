@@ -1,4 +1,3 @@
 package com.quizapp.dao;
-
 public class QuestionDAO {
 }
