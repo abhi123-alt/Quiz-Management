@@ -29,11 +29,17 @@ This project demonstrates user authentication, role-based dashboards (Admin/User
 
 online-quiz-app/
 ├── src/main/java/com/quizapp/controller   # Servlets (Login, Register, Dashboard)
+
 ├── src/main/java/com/quizapp/service      # Business logic
+
 ├── src/main/java/com/quizapp/dao          # Database access (UserDAO, QuizDAO)
+
 ├── src/main/java/com/quizapp/model        # POJOs (User, Quiz, etc.)
+
 ├── src/main/java/com/quizapp/util         # DBConnection utility
+
 ├── src/main/webapp/WEB-INF/views          # JSP pages (auth, user, admin)
+
 └── pom.xml                                # Maven dependencies
 
 ---
