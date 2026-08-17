@@ -26,6 +26,7 @@ This project demonstrates user authentication, role-based dashboards (Admin/User
 ---
 
 ## 📂 Project Structure
+
 online-quiz-app/
 ├── src/main/java/com/quizapp/controller   # Servlets (Login, Register, Dashboard)
 ├── src/main/java/com/quizapp/service      # Business logic
