@@ -18,7 +18,7 @@ public class RegisterServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String confirmPassword = request.getParameter("confirmPassword");
-
+        String role=request.getParameter("role");
         // Check if passwords match
         if (password==null || !password.equals(confirmPassword)) {
             request.setAttribute("error", "Passwords do not match.");
@@ -31,6 +31,7 @@ public class RegisterServlet extends HttpServlet {
         user.setName(name);
         user.setEmail(email);
         user.setPassword(password);
+        user.setRole(role);
 
         // Call Service
         final UserService userService=new UserService();

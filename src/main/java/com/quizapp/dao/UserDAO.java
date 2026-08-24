@@ -19,7 +19,7 @@ public class UserDAO {
             statement.setString(1, user.getName());
             statement.setString(2, user.getEmail());
             statement.setString(3, user.getPassword());
-            statement.setString(4, user.getRole() != null ? user.getRole() : "USER");
+            statement.setString(4, user.getRole() != null ? user.getRole() : "User");
             int rowsInserted= statement.executeUpdate();
             return rowsInserted>0;
         } catch (SQLException e) {
@@ -33,10 +33,9 @@ public class UserDAO {
               PreparedStatement statement = connection.prepareStatement(GET_USER_BY_EMAIL))
         {
             statement.setString(1, email);
+            //statement.setString(2, role);
             ResultSet rs = statement.executeQuery();
-            System.out.println("Checking email: " + email);
             if (rs.next()) {
-                System.out.println("Found user: " + rs.getString("email"));
                 user = new User();
                 user.setUserId(rs.getInt("user_id"));
                 user.setName(rs.getString("name"));

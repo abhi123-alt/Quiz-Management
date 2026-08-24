@@ -19,10 +19,12 @@
                   <div class="error-message"><%= error %></div>
                   <% } %>
          <form action="${pageContext.request.contextPath}/login" method="post">
+
              <div class="input-group">
                  <label>Email Address</label>
                  <input type="email"name="email"placeholder="Enter your email"required>
              </div>
+
              <div class="input-group">
                  <label>Password</label>
                  <div class="password-box">
@@ -30,6 +32,14 @@
                      <span class="toggle-password"onclick="togglePassword('password')">👁</span>
                  </div>
              </div>
+
+
+             <div class="input-group">
+                 <label>Role</label>
+                 <input type="text" name="role" placeholder="Enter the role(Admin/User)" required>
+             </div>
+
+
              <button type="submit" class="auth-btn">Login</button>
          </form>
          <div class="auth-bottom-text">Don't have an account?

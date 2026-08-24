@@ -45,6 +45,13 @@
                     <span class="toggle-password"onclick="togglePassword('confirmPassword')">👁</span>
                 </div>
             </div>
+
+             <div class="input-group">
+                     <label>Role</label>
+                     <input type="text" id="role" name="role" placeholder="Enter the role(Admin/User)" required>
+             </div>
+
+
             <button type="submit" class="auth-btn">Create Account</button>
         </form>
         <div class="auth-bottom-text">Already have an account?<a href="${pageContext.request.contextPath}/login">Login</a></div>

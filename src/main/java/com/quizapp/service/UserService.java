@@ -3,6 +3,7 @@ import com.quizapp.dao.UserDAO;
 import com.quizapp.model.User;
 public class UserService {
     private UserDAO userDAO = new UserDAO();
+
     public boolean register(User user) {
         // Check if email already exist//
         if (userDAO.getUserByEmail(user.getEmail()) != null) {
@@ -10,7 +11,7 @@ public class UserService {
         }
         return userDAO.registerUser(user);
     }
-    public User login(String email, String password) {
+    public User login(String email, String password,String role) {
         User user = userDAO.getUserByEmail(email);
         if (user!=null && user.getPassword().equals(password)) {
             return user;

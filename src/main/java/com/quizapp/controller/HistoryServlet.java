@@ -26,13 +26,13 @@ public class HistoryServlet extends HttpServlet {
         HttpSession session = request.getSession(false);
 
         // User must be logged in
-        if (session == null || session.getAttribute("user_id") == null) {
+        if (session == null || session.getAttribute("userId") == null) {
             response.sendRedirect(request.getContextPath() + "/login");
             return;
         }
-        int user_id = (Integer) session.getAttribute("user_id");
+        int userId = (Integer) session.getAttribute("userId");
         // Get history from database
-        List<HistoryItem> history = attemptService.getUserHistory(user_id);
+        List<HistoryItem> history = attemptService.getUserHistory(userId);
         // Send history to JSP
         request.setAttribute("history",history);
         request.getRequestDispatcher("/WEB-INF/views/user/history.jsp").forward(request, response);
