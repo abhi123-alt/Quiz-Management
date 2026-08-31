@@ -21,7 +21,7 @@ This project demonstrates user authentication, role-based dashboards (Admin/User
 - **Database**: MySQL
 - **Server**: Apache Tomcat 10
 - **Build Tool**: Maven
-- **IDE**: IntelliJ IDEA / Eclipse
+- **IDE**: IntelliJ IDEA 
 
 ---
 
@@ -64,5 +64,6 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 <img width="1852" height="856" alt="image" src="https://github.com/user-attachments/assets/3e8920bd-7abd-48ca-a93a-afbc32954154" />
 
 ### 🛠️ Admin Dashboard
+<img width="954" height="440" alt="image" src="https://github.com/user-attachments/assets/20089af0-2c24-4a75-b116-00579122fccd" />
 
 
