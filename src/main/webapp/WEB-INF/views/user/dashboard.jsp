@@ -65,7 +65,7 @@
                 </div>
                 <div class="profile-name">
                     <strong>${sessionScope.user.name}</strong>
-                    <small>Student</small>
+                    <small>User</small>
                 </div>
             </div>
         </header>
@@ -161,7 +161,7 @@
                                         </div>
                                     </div>
 
-                                    <a href="${pageContext.request.contextPath}/quiz?id=${quiz.id}"class="start-btn">
+                                    <a href="${pageContext.request.contextPath}/quizzes?action=view&quiz_id=${quiz.quiz_id}" class="start-btn">
                                         Start
                                         <span>→</span>
                                     </a>
@@ -206,7 +206,7 @@
                         <c:otherwise>
                             <div class="empty">
                                 <div>📊</div>
-                                <a href="${pageContext.request.contextPath}/quizzes" class="small-btn">
+                                <a href="${pageContext.request.contextPath}/quizzes?action=view&quiz_id=${quiz.quiz_id}" class="small-btn">
                                     Take your first quiz
                                 </a>
                             </div>

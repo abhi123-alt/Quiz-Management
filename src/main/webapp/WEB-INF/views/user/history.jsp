@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,6 +52,7 @@
                                 <th>Score</th>
                                 <th>Percentage</th>
                                 <th>Date</th>
+                                <th>Time</th>
                                 <th>Result</th>
                             </tr>
                             </thead>
@@ -66,7 +68,8 @@
                                     <td><span class="difficulty">${item.difficulty}</span></td>
                                     <td class="score">${item.score}/${item.total_questions}</td>
                                     <td><strong>${String.format("%.1f", item.percentage)}%</strong></td>
-                                    <td>${item.completed_at}</td>
+                                    <td> <fmt:formatDate value="${item.started_at}" pattern="dd-MM-yyyy"/> </td>
+                                    <td> <fmt:formatDate value="${item.started_at}" pattern="hh:mm a"/> </td>
                                     <td>
                                         <c:choose>
                                             <c:when test="${item.percentage >= 80}">

@@ -130,25 +130,50 @@
             </div>
         </c:if>
         <form method="post" action="${pageContext.request.contextPath}/admin/questions">
-            <input type="hidden"  name="action" value="update">
-            <input type="hidden" name="question_id" value="${question.question_id}">
+
+            <input type="hidden"
+                   name="action"
+                   value="update">
+
+            <input type="hidden"
+                   name="question_id"
+                   value="${question.question_id}">
+
+            <input type="hidden"
+                   name="quiz_id"
+                   value="${question.quiz_id}">
+
             <div class="field">
-                <label for="question_text"> Question</label>
-                <textarea id="question_text" name="question_text" required>${question.question_text}</textarea>
+                <label for="question_text"> Question </label>
+                <textarea
+                        id="question_text"
+                        name="question_text"
+                        required>${question.question_text}</textarea>
             </div>
+
             <div class="field">
-                <label> Options </label>
-                <c:forEach var="option" items="${options}" varStatus="status">
+                <label>Options</label>
+                <c:forEach var="option"
+                           items="${options}"
+                           varStatus="status">
                     <div class="option">
-                        <input type="hidden" name="option_id" value="${option.option_id}">
-                        <input type="radio" name="correct_option" value="${status.index}" ${option.isIs_correct() ? 'checked' : ''}>
-                        <input type="text" name="option_text" value="${option.option_text}" required>
+                        <input type="hidden"
+                               name="option_id"
+                               value="${option.option_id}">
+                        <input type="radio"
+                               name="correct_option"
+                               value="${status.index + 1}"
+                               ${option.isIs_correct() ? 'checked' : ''}>
+                        <input type="text"
+                               name="option_text"
+                               value="${option.option_text}"
+                               required>
                     </div>
                 </c:forEach>
             </div>
             <div class="actions">
-                <a href="${pageContext.request.contextPath}/admin/questions?action=list&quiz_id=${question.quiz_id}" class="back">
-                    Cancel
+                <a href="${pageContext.request.contextPath}/admin/questions?action=list&quiz_id=${question.quiz_id}"
+                   class="back"> Cancel
                 </a>
                 <button type="submit"> Update Question </button>
             </div>

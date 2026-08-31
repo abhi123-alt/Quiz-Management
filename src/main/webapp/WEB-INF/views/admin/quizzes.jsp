@@ -308,13 +308,10 @@
                                 <td>
                                     <div class="actions">
                                         <!-- QUESTIONS -->
-                                        <a href="${pageContext.request.contextPath}/admin/question?action=list&quiz_id=${quiz.quiz_id}" class="action btn-question">
-                                            Questions
-                                        </a>
-                                        <!-- EDIT -->
-                                        <a href="${pageContext.request.contextPath}/admin/quizzes?action=edit&quiz_id=${quiz.quiz_id}" class="action btn-edit">
+                                        <a href="${pageContext.request.contextPath}/admin/questions?action=list&quiz_id=${quiz.quiz_id}" class="action btn-question">
                                             Edit
                                         </a>
+
                                         <!-- DELETE -->
                                         <a href="${pageContext.request.contextPath}/admin/quizzes?action=delete&quiz_id=${quiz.quiz_id}" class="action btn-delete"
                                                 onclick="return confirm('Are you sure you want to delete this quiz?');">

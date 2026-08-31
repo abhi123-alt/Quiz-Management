@@ -1,8 +1,10 @@
 package com.quizapp.controller;
-
-import com.quizapp.model.Attempt;
+import com.quizapp.model.Quiz;
+import com.quizapp.model.User;
+import com.quizapp.service.QuizService;
 import com.quizapp.model.HistoryItem;
 import com.quizapp.service.AttemptService;
+import com.quizapp.service.UserService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -10,16 +12,19 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet("/dashboard")
 public class DashboardServlet extends HttpServlet {
     private AttemptService attemptService;
+    private QuizService quizService;
+    private UserService userService;
 
     @Override
     public void init() throws ServletException {
         attemptService = new AttemptService();
+        quizService =new QuizService();
+        userService=new UserService();
     }
 
     @Override
@@ -35,16 +40,17 @@ public class DashboardServlet extends HttpServlet {
 
         // CHECK USER ROLE
         String role = (String) session.getAttribute("role");
-
         // ADMIN DASHBOARD
         if ("Admin".equalsIgnoreCase(role)) {
-            request.getRequestDispatcher("/WEB-INF/views/admin/dashboard.jsp").forward(request, response);
+            response.sendRedirect(request.getContextPath() +"/admin/dashboard");
             return;
         }
 
-
         // STUDENT DASHBOARD
         int userId = (Integer) session.getAttribute("userId");
+
+        // Fetch user from database
+        User user = userService.getUserById(userId);
 
         // GET DASHBOARD DATA
         int totalAttempts = attemptService.getTotalAttemptsByUserId(userId);
@@ -53,6 +59,7 @@ public class DashboardServlet extends HttpServlet {
 
         // GET RECENT QUIZ HISTORY
         List<HistoryItem> history = attemptService.getUserHistory(userId);
+        List<Quiz> quizzes = quizService.getAllQuizzes();
 
         // Keep only recent 5 attempts for dashboard
         List<HistoryItem> recentHistory;
@@ -67,6 +74,9 @@ public class DashboardServlet extends HttpServlet {
         request.setAttribute("bestScore", bestScore );
         request.setAttribute("averageScore", averageScore);
         request.setAttribute("recentHistory",recentHistory);
+        request.setAttribute("quizzes", quizzes);
+        request.setAttribute("user", user);
+
 
         // OPEN STUDENT DASHBOARD JSP
         request.getRequestDispatcher("/WEB-INF/views/user/dashboard.jsp" ).forward(request, response);

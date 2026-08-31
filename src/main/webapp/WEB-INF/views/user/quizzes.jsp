@@ -88,7 +88,7 @@
                             <span class="badge">${quiz.time_limit} minutes</span>
                         </div>
 
-                        <a href="${pageContext.request.contextPath}/quiz?action=take&amp;quiz_id=${quiz.quiz_id}" class="start-btn">
+                        <a href="${pageContext.request.contextPath}/quizzes?action=take&amp;quiz_id=${quiz.quiz_id}" class="start-btn">
                             Start Quiz →
                         </a>
                     </div>

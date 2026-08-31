@@ -80,7 +80,7 @@
             margin-top: 25px;
         }
 
-        button,
+        button,finish,
         .back {
             border: none;
             padding: 11px 18px;
@@ -99,6 +99,11 @@
             background: #6b7280;
             color: white;
         }
+
+        .finish {
+               background: #4f46e5;
+               color: white;
+           }
 
         .error {
             background: #fee2e2;
@@ -123,7 +128,7 @@
                 <%= error %>
             </div>
         <% } %>
-        <form method="post" action="${pageContext.request.contextPath}/admin/question">
+        <form method="post" action="${pageContext.request.contextPath}/admin/questions">
             <input type="hidden" name="action" value="add">
             <input type="hidden" name="quiz_id" value="${quiz_id}">
             <div class="field">
@@ -132,34 +137,66 @@
             </div>
 
             <div class="field">
-                <label> Options </label>
+                <label>Options</label>
                 <div class="option">
-                    <input type="radio" name="correct_option" value="0" required>
-                    <input type="text" name="option_text" placeholder="Option 1" required>
+                    <input type="radio"
+                           name="correct_option"
+                           value="1"
+                           required>
+
+                    <input type="text"
+                           name="option_1"
+                           placeholder="Option 1"
+                           required>
                 </div>
 
                 <div class="option">
-                    <input type="radio"  name="correct_option" value="1">
-                    <input type="text" name="option_text" placeholder="Option 2" required>
+                    <input type="radio"
+                           name="correct_option"
+                           value="2">
+
+                    <input type="text"
+                           name="option_2"
+                           placeholder="Option 2"
+                           required>
                 </div>
 
                 <div class="option">
-                    <input type="radio" name="correct_option" value="2">
-                    <input type="text" name="option_text" placeholder="Option 3" required>
+                    <input type="radio"
+                           name="correct_option"
+                           value="3">
+
+                    <input type="text"
+                           name="option_3"
+                           placeholder="Option 3"
+                           required>
                 </div>
 
                 <div class="option">
-                    <input type="radio" name="correct_option" value="3">
-                    <input type="text" name="option_text" placeholder="Option 4" required>
+                    <input type="radio"
+                           name="correct_option"
+                           value="4">
+
+                    <input type="text"
+                           name="option_4"
+                           placeholder="Option 4"
+                           required>
                 </div>
             </div>
+
             <div class="actions">
-                <a href="${pageContext.request.contextPath}/admin/question?action=list&quiz_id=${quiz_id}" class="back">
+                <a href="${pageContext.request.contextPath}/admin/questions?action=list&quiz_id=${quiz_id}"
+                   class="back">
                     Cancel
                 </a>
+
                 <button type="submit">
                     Save Question
                 </button>
+
+                <a href="${pageContext.request.contextPath}/admin/questions?action=list&quiz_id=${quiz_id}" class="finish">
+                    Finish Quiz
+                </a>
             </div>
         </form>
     </div>

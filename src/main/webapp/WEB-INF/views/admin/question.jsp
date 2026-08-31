@@ -123,7 +123,7 @@
                 Back to Quizzes
             </a>
 
-            <a href="${pageContext.request.contextPath}/admin/question?action=add&quiz_id=${quiz_id}" class="btn">
+            <a href="${pageContext.request.contextPath}/admin/questions?action=add&quiz_id=${quiz_id}" class="btn">
                 + Add Question
             </a>
         </div>
@@ -142,12 +142,13 @@
                             ${question.question_text}
                         </div>
                         <div class="actions">
-                            <a href="${pageContext.request.contextPath}/admin/question?action=edit&question_id=${question.question_id}" class="action edit">
+                            <a href="${pageContext.request.contextPath}/admin/questions?action=edit&question_id=${question.question_id}" class="action edit">
                                 Edit
                             </a>
 
-                            <a href="${pageContext.request.contextPath}/admin/question?action=delete&question_id=${question.question_id}" class="action delete"
-                             onclick="return confirm('Delete this question and its options?');">
+                            <a href="${pageContext.request.contextPath}/admin/questions?action=delete&question_id=${question.question_id}&quiz_id=${question.quiz_id}"
+                               class="action delete"
+                               onclick="return confirm('Delete this question and its options?');">
                                 Delete
                             </a>
                         </div>
@@ -158,7 +159,7 @@
                 <div class="empty">
                     <h3>No questions found</h3>
                     <p> This quiz does not have any questions yet. </p> <br>
-                    <a href="${pageContext.request.contextPath}/admin/question?action=add&quiz_id=${quiz_id}" class="btn">
+                    <a href="${pageContext.request.contextPath}/admin/questions?action=add&quiz_id=${quiz_id}" class="btn">
                         Add First Question
                     </a>
                 </div>

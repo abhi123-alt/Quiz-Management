@@ -1,15 +1,20 @@
 package com.quizapp.model;
 
+import java.util.List;
+
 public class Question {
 
     private int question_id;
     private int quiz_id;
     private String question_text;
 
+    // Options belonging to this question
+    private List<Option> options;
+
     public Question() {
     }
 
-    public Question(int question_id,int quiz_id,String question_text) {
+    public Question(int question_id, int quiz_id, String question_text) {
         this.question_id = question_id;
         this.quiz_id = quiz_id;
         this.question_text = question_text;
@@ -31,12 +36,21 @@ public class Question {
         this.quiz_id = quiz_id;
     }
 
-
     public String getQuestion_text() {
         return question_text;
     }
 
     public void setQuestion_text(String question_text) {
         this.question_text = question_text;
+    }
+
+    // GET OPTIONS
+    public List<Option> getOptions() {
+        return options;
+    }
+
+    // SET OPTIONS
+    public void setOptions(List<Option> options) {
+        this.options = options;
     }
 }

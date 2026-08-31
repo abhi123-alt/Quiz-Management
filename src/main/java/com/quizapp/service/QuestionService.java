@@ -22,10 +22,9 @@ public class QuestionService {
     }
 
     // Add a new question
-    public boolean addQuestion(Question question) {
+    public int addQuestion(Question question) {
         return questionDAO.addQuestion(question);
     }
-
     // Update question
     public boolean updateQuestion(Question question) {
         return questionDAO.updateQuestion(question);

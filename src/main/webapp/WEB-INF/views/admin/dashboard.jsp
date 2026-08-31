@@ -332,7 +332,7 @@
         </div>
 
         <div class="admin-name">
-            Abhishek Kumar Giri
+            ${user.name}
         </div>
     </div>
 

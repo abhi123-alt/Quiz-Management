@@ -24,11 +24,7 @@ public class AttemptDAO {
             ps.setInt(2, attempt.getQuiz_id());
             ps.setInt(3, attempt.getScore());
             ps.setInt(4, attempt.getTotal_questions());
-            if (attempt.getStarted_at() != null) {
-                ps.setTimestamp(5, attempt.getStarted_at());
-            } else {
-                ps.setTimestamp(5, new Timestamp(System.currentTimeMillis()));
-            }
+            ps.setTimestamp(5, new Timestamp(System.currentTimeMillis()));
             int rows = ps.executeUpdate();
             if (rows == 0) {
                 return -1;
@@ -155,13 +151,33 @@ public class AttemptDAO {
         String sql = """
                 UPDATE quiz_attempt
                 SET score = ?,
-                    total_questions = ?
+                    total_questions = ?,
+                    completed_at = CURRENT_TIMESTAMP
                 WHERE attempt_id = ?
                 """;
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setInt(1, score);
             ps.setInt(2, total_questions);
             ps.setInt(3, attempt_id);
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    // UPDATE SCORE
+    public boolean updateAttempt(Attempt attempt) {
+        String sql = """
+            UPDATE quiz_attempt
+            SET score = ?,
+                total_questions = ?
+            WHERE attempt_id = ?
+            """;
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, attempt.getScore());
+            ps.setInt(2, attempt.getTotal_questions());
+            ps.setInt(3, attempt.getAttempt_id());
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -226,15 +242,18 @@ public class AttemptDAO {
     public double getAverageScoreByUserId(int user_id) {
         String sql = """
                 SELECT COALESCE(
+                  ROUND(
                     AVG(
                         CASE
                             WHEN total_questions > 0
                             THEN (score * 100.0 / total_questions)
                             ELSE 0
                         END
-                    ),
-                    0
-                )
+                      ),
+                      2
+                 ),
+                 0
+              )
                 FROM quiz_attempt
                 WHERE user_id = ?
                 """;
@@ -242,7 +261,7 @@ public class AttemptDAO {
             ps.setInt(1, user_id);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    return rs.getDouble(1);
+                    return rs.getInt(1);
                 }
             }
         } catch (SQLException e) {
@@ -363,4 +382,24 @@ public class AttemptDAO {
 
         return history;
     }
+
+    public boolean deleteAttemptsByQuizId(int quiz_id) {
+        String sql = """
+        DELETE FROM quiz_attempt
+        WHERE quiz_id = ?
+        """;
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, quiz_id);
+            int rows = ps.executeUpdate();
+
+            return true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
 }

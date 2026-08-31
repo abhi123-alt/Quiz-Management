@@ -20,48 +20,68 @@ public class AttemptService {
     public int createAttempt(Attempt attempt) {
         return attemptDAO.createAttempt(attempt);
     }
+
     // GET ATTEMPT BY ID
     public Attempt getAttemptById(int attempt_id) {
         return attemptDAO.getAttemptById(attempt_id);
     }
+
     // GET ALL ATTEMPTS OF USER
     public List<Attempt> getAttemptsByUserId(int user_id) {
         return attemptDAO.getAttemptsByUserId(user_id);
     }
+
     // GET ATTEMPTS OF PARTICULAR QUIZ
     public List<Attempt> getAttemptsByUserAndQuiz(int user_id,int quiz_id) {
         return attemptDAO.getAttemptsByUserAndQuiz(user_id,quiz_id);
     }
+
     // COMPLETE ATTEMPT
     public boolean completeAttempt(int attempt_id,int score) {
         return attemptDAO.completeAttempt(attempt_id,score);
     }
+
     // UPDATE SCORE
     public boolean updateScore(int attempt_id,int score,int total_questions) {
         return attemptDAO.updateScore(attempt_id,score,total_questions);
     }
+
     // TOTAL ATTEMPTS
     public int getTotalAttemptsByUserId(int user_id) {
         return attemptDAO.getTotalAttemptsByUserId(user_id);
     }
+
     // BEST SCORE
     public double getBestScoreByUserId(int user_id) {
         return attemptDAO.getBestScoreByUserId(user_id);
     }
+
     // AVERAGE SCORE
     public double getAverageScoreByUserId(int user_id) {
         return attemptDAO.getAverageScoreByUserId(user_id);
     }
+
     // RECENT ATTEMPTS
     public List<Attempt> getRecentAttempts(int user_id,int limit) {
         return attemptDAO.getRecentAttempts(user_id,limit);
     }
+
     // HISTORY
     public List<HistoryItem> getUserHistory(int user_id) {
         return attemptDAO.getHistoryByUserId(user_id);
     }
+
     // DELETE ATTEMPT
     public boolean deleteAttempt(int attempt_id) {
         return attemptDAO.deleteAttempt(attempt_id);
+    }
+
+    // UPDATE ATTEMPT
+    public boolean updateAttempt(Attempt attempt) {
+        return attemptDAO.updateAttempt(attempt);
+    }
+    // DELETE ATTEMPT
+    public boolean deleteAttemptsByQuizId(int quiz_id) {
+        return attemptDAO.deleteAttemptsByQuizId(quiz_id);
     }
 }

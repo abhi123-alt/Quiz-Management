@@ -15,16 +15,12 @@ import java.io.IOException;
 public class AttemptServlet extends HttpServlet {
 
     private AttemptService attemptService;
-
     @Override
     public void init() throws ServletException {
         try {
             attemptService = new AttemptService();
         } catch (Exception e) {
-            throw new ServletException(
-                    "Failed to initialize AttemptService",
-                    e
-            );
+            throw new ServletException( "Failed to initialize AttemptService", e );
         }
     }
 
@@ -47,13 +43,24 @@ public class AttemptServlet extends HttpServlet {
         int userId = (Integer) session.getAttribute("userId");
 
         // Get quiz ID from request
-        int quizId = Integer.parseInt(request.getParameter("quizId"));
+        String quiz_id_parameter = request.getParameter("quiz_id");
+        if (quiz_id_parameter == null || quiz_id_parameter.trim().isEmpty()) {
+            response.sendError( HttpServletResponse.SC_BAD_REQUEST,"quiz_id is required" );
+            return;
+        }
+        int quiz_id;
+        try {
+            quiz_id = Integer.parseInt(quiz_id_parameter);
+        } catch (NumberFormatException e) {
+            response.sendError( HttpServletResponse.SC_BAD_REQUEST,"Invalid quiz_id" );
+            return;
+        }
 
         // Create new Attempt
         Attempt attempt = new Attempt();
 
         attempt.setUser_id(userId);
-        attempt.setQuiz_id(quizId);
+        attempt.setQuiz_id(quiz_id);
 
         // Initial values
         attempt.setScore(0);
@@ -65,10 +72,9 @@ public class AttemptServlet extends HttpServlet {
             // Save attempt ID for the quiz flow
             session.setAttribute("attemptId",attemptId);
             // Continue to quiz
-            response.sendRedirect(request.getContextPath()+ "/quiz?quizId=" + quizId);
+            response.sendRedirect(request.getContextPath() + "/quizzes?action=play&quiz_id=" + quiz_id);
         } else {
-            request.setAttribute("error","Unable to create quiz attempt.");
-            request.getRequestDispatcher("/WEB-INF/views/error.jsp").forward(request, response);
+            response.sendError( HttpServletResponse.SC_INTERNAL_SERVER_ERROR,"Unable to create quiz attempt." );
         }
     }
 }
